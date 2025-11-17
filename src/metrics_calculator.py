@@ -97,6 +97,7 @@ class MetricsCalculator:
             calls_agg['Talk_Time_Hours'] = calls_agg['Talk_Time_Seconds'] / 3600
             calls_agg['Avg_Daily_Inbound_Calls'] = calls_agg['Inbound_Conversations'] / self.working_days
             calls_agg['Avg_Daily_Outbound_Calls'] = calls_agg['Outbound_Conversations'] / self.working_days
+            calls_agg['Avg_Daily_Dials'] = calls_agg['Dials'] / self.working_days # New metric for 40-dial standard
             
             # --- 2. 2nd Voice Call Logic (REMOVED) ---
             
@@ -148,12 +149,13 @@ class MetricsCalculator:
             return pd.DataFrame()
 
     def process_daily_enrollments(self, file_path):
-        """Processes the daily enrollment report for debt."""
+        """Processes the daily enrollment report for debt and Mindset KPIs."""
         print("Processing Daily Enrollment Report...")
         try:
             df = pd.read_csv(file_path)
             df = df.rename(columns={'AFF_Agents': 'Agent_Name'})
             df['Enrollment_Date'] = pd.to_datetime(df['Enrollment_Date'])
+            df['Start_Date'] = pd.to_datetime(df['Start_Date'], errors='coerce') # Added for KPI
             
             df_filtered = df[
                 (df['Enrollment_Date'] >= self.start_date) & 
@@ -163,10 +165,23 @@ class MetricsCalculator:
             df_filtered['Original_Enrolled_Debt'] = df_filtered['Original_Enrolled_Debt'].astype(str).str.replace(r'[$,]', '', regex=True)
             df_filtered['Original_Enrolled_Debt'] = pd.to_numeric(df_filtered['Original_Enrolled_Debt'], errors='coerce').fillna(0)
             
+            # --- New KPI Calculations ---
+            # 1. Payment Type KPI (85% Standard)
+            payment_types = ['Biweekly', 'Split'] # Per 85% standard
+            df_filtered['is_biweekly_or_split'] = df_filtered['Originally_Scheduled_Draft_Type'].isin(payment_types)
+            
+            # 2. Payment Window KPI (90% Standard)
+            df_filtered['days_to_start'] = (df_filtered['Start_Date'] - df_filtered['Enrollment_Date']).dt.days
+            df_filtered['is_3_to_5_day_start'] = df_filtered['days_to_start'].between(3, 5)
+            # --- End New KPI Calculations ---
+            
             # 1. Aggregate for main report
             debt_agg = df_filtered.groupby('Agent_Name').agg(
                 Total_Enrolled_Debt=('Original_Enrolled_Debt', 'sum'),
-                Average_Enrolled_Debt=('Original_Enrolled_Debt', 'mean')
+                Average_Enrolled_Debt=('Original_Enrolled_Debt', 'mean'),
+                # --- Aggregate New KPIs ---
+                Total_Biweekly_Or_Split=('is_biweekly_or_split', 'sum'),
+                Total_3_to_5_Day_Starts=('is_3_to_5_day_start', 'sum')
             ).reset_index()
             
             # 2. Match for Josh's stats (REMOVED)
@@ -211,6 +226,37 @@ class MetricsCalculator:
             print(f"Error processing Retention Report: {e}")
             return pd.DataFrame()
 
+    def process_crm_report(self, file_path):
+        """Processes the CRM export for leads, credit pulls, and submissions."""
+        print("Processing CRM Report...")
+        try:
+            df = pd.read_csv(file_path, low_memory=False)
+            # Assuming 'Assigned To' is the agent name field that links to definitions.md
+            df = df.rename(columns={'Assigned To': 'Agent_Name'})
+            df['Created'] = pd.to_datetime(df['Created'])
+
+            df_filtered = df[
+                (df['Created'] >= self.start_date) &
+                (df['Created'] < self.end_date + pd.Timedelta(days=1))
+            ].copy()
+
+            # Logic from definitions.md
+            df_filtered['is_credit_pull'] = df_filtered['Credit Pulled'] == 'Yes'
+            df_filtered['is_submission'] = pd.to_datetime(df_filtered['Submitted Date'], errors='coerce').notna()
+
+            crm_agg = df_filtered.groupby('Agent_Name').agg(
+                Total_New_Leads_MTD=('ID', 'nunique'), # Count unique lead IDs
+                Total_Credit_Pulls_MTD=('is_credit_pull', 'sum'),
+                Total_Submitted_To_Freedom_MTD=('is_submission', 'sum')
+            ).reset_index()
+
+            return crm_agg
+
+        except Exception as e:
+            print(f"Error processing CRM Report: {e}")
+            return pd.DataFrame(columns=['Agent_Name', 'Total_New_Leads_MTD', 'Total_Credit_Pulls_MTD', 'Total_Submitted_To_Freedom_MTD'])
+
+
     def generate_final_report(self, file_paths):
         """Orchestrates all processing and merges data into a final report."""
         
@@ -218,6 +264,7 @@ class MetricsCalculator:
         rescission_metrics = self.process_rescissions(file_paths['rescissions'])
         enrollment_metrics = self.process_daily_enrollments(file_paths['daily_enrollment'])
         retention_metrics = self.process_retention_report(file_paths['retention'])
+        crm_metrics = self.process_crm_report(file_paths['crm']) # New
         
         # Start with the active agent list
         final_df = self.active_agents_df.copy()
@@ -227,13 +274,16 @@ class MetricsCalculator:
         final_df = pd.merge(final_df, rescission_metrics, on='Agent_Name', how='left')
         final_df = pd.merge(final_df, enrollment_metrics, on='Agent_Name', how='left')
         final_df = pd.merge(final_df, retention_metrics, on='Agent_Name', how='left')
+        final_df = pd.merge(final_df, crm_metrics, on='Agent_Name', how='left') # New
         
         # Fill NaNs
         fill_zero_cols = [
             'Dials', 'Inbound_Conversations', 'Outbound_Conversations', 'Total_Conversations',
-            'Talk_Time_Hours', 'Avg_Daily_Inbound_Calls', 'Avg_Daily_Outbound_Calls',
+            'Talk_Time_Hours', 'Avg_Daily_Inbound_Calls', 'Avg_Daily_Outbound_Calls', 'Avg_Daily_Dials',
             'Enrollments', 'Rescissions', 'First_Drafts',
-            'Total_Enrolled_Debt', 'Average_Enrolled_Debt', 'Cleared_Deals', 'Cleared_Debt_Load'
+            'Total_Enrolled_Debt', 'Average_Enrolled_Debt', 'Cleared_Deals', 'Cleared_Debt_Load',
+            'Total_Biweekly_Or_Split', 'Total_3_to_5_Day_Starts', # Mindset KPIs
+            'Total_New_Leads_MTD', 'Total_Credit_Pulls_MTD', 'Total_Submitted_To_Freedom_MTD' # CRM Metrics
         ]
         for col in fill_zero_cols:
             if col in final_df.columns:
@@ -247,7 +297,24 @@ class MetricsCalculator:
         final_df['Conv_per_Dial'] = (final_df['Outbound_Conversations'] / final_df['Dials'] * 100)
         final_df['Enr_per_Conv'] = (final_df['Enrollments'] / final_df['Total_Conversations'] * 100)
         
+        # --- New "Mindset of Execution" Rates ---
+        final_df['Pct_Biweekly_Or_Split'] = (final_df['Total_Biweekly_Or_Split'] / final_df['Enrollments'] * 100)
+        final_df['Pct_3_to_5_Day_Starts'] = (final_df['Total_3_to_5_Day_Starts'] / final_df['Enrollments'] * 100)
+        
         final_df = final_df.replace([np.inf, -np.inf], 0).fillna(0)
+        
+        # --- Rename columns to match definitions.md ---
+        final_df = final_df.rename(columns={
+            'Enrollments': 'Closes_MTD',
+            'Rescissions': 'Cancellations_MTD',
+            'Total_Conversations': 'Total_Calls_MTD',
+            'Inbound_Conversations': 'Total_Inbound_MTD',
+            'Outbound_Conversations': 'Total_Outbound_MTD',
+            'Avg_Daily_Outbound_Calls': 'Avg_Daily_Outbound_MTD',
+            'Total_Enrolled_Debt': 'Total_Enrolled_Debt_MTD',
+            'Average_Enrolled_Debt': 'Avg_Debt_Amount_MTD',
+            'Cleared_Debt_Load': 'Cleared_Debt_Load_MTD'
+        })
         
         return final_df
 
@@ -267,7 +334,8 @@ if __name__ == "__main__":
         "calls": "../data_examples/call_logs_example.csv",
         "rescissions": ["../data_examples/rescission_report_example.csv"],
         "daily_enrollment": "../data_examples/daily_enrollment_example.csv",
-        "retention": "../data_examples/retention_report_example.csv"
+        "retention": "../data_examples/retention_report_example.csv",
+        "crm": "../data_examples/CRM.csv" # Added CRM path
     }
     
     # --- EXECUTION ---
