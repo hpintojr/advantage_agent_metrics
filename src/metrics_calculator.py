@@ -98,43 +98,12 @@ class MetricsCalculator:
             calls_agg['Avg_Daily_Inbound_Calls'] = calls_agg['Inbound_Conversations'] / self.working_days
             calls_agg['Avg_Daily_Outbound_Calls'] = calls_agg['Outbound_Conversations'] / self.working_days
             
-            # --- 2. 2nd Voice Call Logic ---
-            # (Based on definition: > 7min, involves 1+ active agent and 1+ active manager)
-            df_filtered['external_number_cleaned'] = self._clean_phone(df_filtered['external_number'])
+            # --- 2. 2nd Voice Call Logic (REMOVED) ---
             
-            manager_long_calls = df_filtered[
-                (df_filtered['email'].isin(self.active_manager_emails)) &
-                (df_filtered['talk_duration'] > 420) # 7 minutes
-            ]
-            manager_long_call_ids = manager_long_calls['call_id'].unique()
+            # --- 3. Josh's (Manager) 2nd Voice Stats (REMOVED) ---
             
-            all_participants = df_filtered[df_filtered['call_id'].isin(manager_long_call_ids)]
-            
-            agents_in_manager_calls = all_participants[
-                all_participants['email'].isin(self.active_agent_emails)
-            ]
-            
-            second_voice_counts = agents_in_manager_calls.groupby('email')['call_id'].nunique().reset_index()
-            second_voice_counts.columns = ['Email', 'Second_Voice_Calls_Over_7Min']
-            
-            # --- 3. Josh's (Manager) 2nd Voice Stats ---
-            self.josh_call_keys = set()
-            josh_email = 'josh@advantagefirst.com'
-            self.total_josh_long_calls = 0
-            if josh_email in self.active_manager_emails:
-                josh_long_calls_df = manager_long_calls[manager_long_calls['email'] == josh_email]
-                self.total_josh_long_calls = josh_long_calls_df['call_id'].nunique()
-                if not josh_long_calls_df.empty:
-                    josh_long_calls_df['call_key'] = josh_long_calls_df['date_started'].dt.strftime('%Y-%m-%d') + '_' + josh_long_calls_df['external_number_cleaned']
-                    self.josh_call_keys = set(josh_long_calls_df['call_key'])
-            
-            print(f"Found {self.total_josh_long_calls} long calls for Josh G.")
-
-            # Merge basic and 2nd voice counts
-            final_call_metrics = pd.merge(calls_agg, second_voice_counts, on='Email', how='left')
-            final_call_metrics['Second_Voice_Calls_Over_7Min'] = final_call_metrics['Second_Voice_Calls_Over_7Min'].fillna(0)
-            
-            return final_call_metrics.rename(columns={'email': 'Email'})
+            # Return basic call metrics
+            return calls_agg.rename(columns={'email': 'Email'})
 
         except Exception as e:
             print(f"Error processing Call Logs: {e}")
@@ -179,10 +148,8 @@ class MetricsCalculator:
             return pd.DataFrame()
 
     def process_daily_enrollments(self, file_path):
-        """Processes the daily enrollment report for debt and Josh's stats."""
+        """Processes the daily enrollment report for debt."""
         print("Processing Daily Enrollment Report...")
-        self.josh_enrolled_deals = 0
-        self.josh_enrollment_rate = 0
         try:
             df = pd.read_csv(file_path)
             df = df.rename(columns={'AFF_Agents': 'Agent_Name'})
@@ -202,16 +169,7 @@ class MetricsCalculator:
                 Average_Enrolled_Debt=('Original_Enrolled_Debt', 'mean')
             ).reset_index()
             
-            # 2. Match for Josh's stats
-            if 'Phone' in df_filtered.columns and not self.josh_call_keys == set():
-                df_filtered['Phone_cleaned'] = self._clean_phone(df_filtered['Phone'])
-                df_filtered['enroll_key'] = df_filtered['Enrollment_Date'].dt.strftime('%Y-%m-%d') + '_' + df_filtered['Phone_cleaned']
-                
-                josh_enrolled_deals_df = df_filtered[df_filtered['enroll_key'].isin(self.josh_call_keys)]
-                self.josh_enrolled_deals = josh_enrolled_deals_df['CRM_Id'].nunique()
-                self.josh_enrollment_rate = (self.josh_enrolled_deals / self.total_josh_long_calls * 100) if self.total_josh_long_calls > 0 else 0
-            
-            print(f"Found {self.josh_enrolled_deals} enrollments from Josh's long calls.")
+            # 2. Match for Josh's stats (REMOVED)
 
             return debt_agg
             
@@ -274,7 +232,7 @@ class MetricsCalculator:
         fill_zero_cols = [
             'Dials', 'Inbound_Conversations', 'Outbound_Conversations', 'Total_Conversations',
             'Talk_Time_Hours', 'Avg_Daily_Inbound_Calls', 'Avg_Daily_Outbound_Calls',
-            'Second_Voice_Calls_Over_7Min', 'Enrollments', 'Rescissions', 'First_Drafts',
+            'Enrollments', 'Rescissions', 'First_Drafts',
             'Total_Enrolled_Debt', 'Average_Enrolled_Debt', 'Cleared_Deals', 'Cleared_Debt_Load'
         ]
         for col in fill_zero_cols:
@@ -323,12 +281,7 @@ if __name__ == "__main__":
         print("\n--- FINAL REPORT ---")
         print(report.to_markdown(index=False, floatfmt=".2f"))
         
-        print("\n--- JOSH G. 2ND VOICE STATS ---")
-        josh_stats = {
-            "Total long calls (> 7min)": calculator.total_josh_long_calls,
-            "Enrollments from these calls": calculator.josh_enrolled_deals,
-            "Enrollment Rate %": calculator.josh_enrollment_rate
-        }
-        print(pd.DataFrame([josh_stats]).to_markdown(index=False, floatfmt=".2f"))
+        # --- JOSH G. 2ND VOICE STATS (REMOVED) ---
+        
     else:
         print("Could not run report: No active agents found in knowledge base.")
