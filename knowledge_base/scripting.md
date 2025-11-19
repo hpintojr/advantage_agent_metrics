@@ -498,21 +498,17 @@ You must hit every milestone on every call.
 
 4\\. Spanish Script (Full)
 
-Inicio de llamada: "Hola, gracias por llamar a Advantage First Financial, mi nombre es \_\_\_\_\_\_\_\_\_ y esta llamada está siendo grabada."
+
+
+Inicio de llamada: "Hola, gracias por llamar a Advantage First Financial, mi nombre es \\\_\\\_\\\_\\\_\\\_\\\_\\\_\\\_\\\_ y esta llamada está siendo grabada."
 
 
 
-
-
-(If mailer): "Hola \_\_\_\_\_\_\_\_, ¿usted llamó en relación a un aviso que recibió por correo? Si es así, ¿me puede proporcionar el código?"
-
+(If mailer): "Hola \\\_\\\_\\\_\\\_\\\_\\\_\\\_\\\_, ¿usted llamó en relación a un aviso que recibió por correo? Si es así, ¿me puede proporcionar el código?"
 
 
 
-
-(If PURL): "Hola, ¿puedo hablar con \_\_\_\_\_\_\_\_?Hola, le habla \_\_\_\_\_\_\_\_ de Lyfe Lending. Lo estoy contactando en relación a una consulta en línea sobre un préstamo para consolidar deudas, ¿correcto?"
-
-
+(If PURL): "Hola, ¿puedo hablar con \\\_\\\_\\\_\\\_\\\_\\\_\\\_\\\_?Hola, le habla \\\_\\\_\\\_\\\_\\\_\\\_\\\_\\\_ de Lyfe Lending. Lo estoy contactando en relación a una consulta en línea sobre un préstamo para consolidar deudas, ¿correcto?"
 
 
 
@@ -596,8 +592,6 @@ Preparación para la evaluación:
 
 
 
-
-
 (After Evo/Decline): "Ok, tengo una contraoferta, es una aprobación basada en ingresos."
 
 
@@ -606,9 +600,7 @@ Preparación para la evaluación:
 
 
 
-Pivote (Pivot) \& Dolor (Pain):
-
-
+Pivote (Pivot) \\\& Dolor (Pain):
 
 
 
@@ -616,7 +608,7 @@ Pivote (Pivot) \& Dolor (Pain):
 
 
 
-"Estas cuentas suman un total de $\_\_\_\_\_\_\_ y actualmente usted está pagando aproximadamente $\_\_\_\_\_\_\_\_ al mes en total, ¿eso es correcto?"
+"Estas cuentas suman un total de $\\\_\\\_\\\_\\\_\\\_\\\_\\\_ y actualmente usted está pagando aproximadamente $\\\_\\\_\\\_\\\_\\\_\\\_\\\_\\\_ al mes en total, ¿eso es correcto?"
 
 
 
@@ -624,7 +616,7 @@ Pivote (Pivot) \& Dolor (Pain):
 
 
 
-"\_\_\_\_\_\_\_\_\_, ¿sabe lo que es el interés compuesto diario? ...Eso quiere decir que estos acreedores le están cobrando intereses todos los días, por lo tanto, cada mes que usted les envía el pago mínimo, ese dinero se va solamente a intereses, no al capital."
+"\\\_\\\_\\\_\\\_\\\_\\\_\\\_\\\_\\\_, ¿sabe lo que es el interés compuesto diario? ...Eso quiere decir que estos acreedores le están cobrando intereses todos los días, por lo tanto, cada mes que usted les envía el pago mínimo, ese dinero se va solamente a intereses, no al capital."
 
 
 
@@ -632,11 +624,11 @@ Propuesta de pago (The Pitch):
 
 
 
-"Dicho esto, puedo incluir todas las cuentas que mencionamos y ofrecerle un nuevo pago mensual de $\_\_\_\_\_\_\_\_ durante \_\_\_\_\_\_ meses a plazo fijo. Por favor anótelo."
+"Dicho esto, puedo incluir todas las cuentas que mencionamos y ofrecerle un nuevo pago mensual de $\\\_\\\_\\\_\\\_\\\_\\\_\\\_\\\_ durante \\\_\\\_\\\_\\\_\\\_\\\_ meses a plazo fijo. Por favor anótelo."
 
 
 
-"Como puede ver, le estoy ahorrando $\_\_\_\_\_\_\_\_ al mes desde ya y $\_\_\_\_\_\_\_\_ en total..."
+"Como puede ver, le estoy ahorrando $\\\_\\\_\\\_\\\_\\\_\\\_\\\_\\\_ al mes desde ya y $\\\_\\\_\\\_\\\_\\\_\\\_\\\_\\\_ en total..."
 
 
 
@@ -664,13 +656,11 @@ Finalizar (Close):
 
 
 
-"Mi sistema me permite programar su primer pago para el \_\_\_\_\_\_\_, lo que le dará un respiro económico."
+"Mi sistema me permite programar su primer pago para el \\\_\\\_\\\_\\\_\\\_\\\_\\\_, lo que le dará un respiro económico."
 
 
 
 "Solo tengo que hacerle unas preguntas finales, generamos los documentos, los firma rápidamente y puede continuar con su día, ¿le parece bien?"
-
-
 
 
 
