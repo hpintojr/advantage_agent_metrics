@@ -7,6 +7,10 @@ import os
 import re
 from datetime import datetime
 
+# --- NEW CONSTANT FOR SCRIPT ADHERENCE ---
+TOTAL_CRITICAL_POINTS = 15 
+# --- END NEW CONSTANT ---
+
 class MetricsCalculator:
     def __init__(self, kb_path, start_date_str, end_date_str):
         self.kb_path = kb_path
@@ -256,6 +260,46 @@ class MetricsCalculator:
             print(f"Error processing CRM Report: {e}")
             return pd.DataFrame(columns=['Agent_Name', 'Total_New_Leads_MTD', 'Total_Credit_Pulls_MTD', 'Total_Submitted_To_Freedom_MTD'])
 
+    # --- NEW METHOD FOR SCRIPT ADHERENCE SCORE ---
+    def process_qa_report(self, file_path):
+        """
+        Processes the Quality Assurance (QA) report for Script Adherence metrics.
+        Assumes the QA report contains 'Agent_Email' and 'Total_Critical_Points_Hit'.
+        """
+        print("Processing Quality Assurance Report...")
+        try:
+            df = pd.read_csv(file_path, low_memory=False)
+            
+            required_cols = ['Agent_Email', 'Total_Critical_Points_Hit']
+            if not all(col in df.columns for col in required_cols):
+                 print(f"Error: QA report missing required columns: {required_cols}. Returning empty DataFrame.")
+                 return pd.DataFrame()
+            
+            df = df.rename(columns={'Agent_Email': 'Email'})
+            
+            # Aggregate total critical points hit across all QA'd calls for an agent
+            qa_agg = df.groupby('Email').agg(
+                Total_Critical_Points_Hit=('Total_Critical_Points_Hit', 'sum'),
+                Total_Calls_QA=('Email', 'count') # Tracks how many calls were QA'd for the agent
+            ).reset_index()
+            
+            # Calculate total possible critical points based on number of calls QA'd
+            qa_agg['Total_Possible_Critical_Points'] = qa_agg['Total_Calls_QA'] * TOTAL_CRITICAL_POINTS
+            
+            # Calculate final Adherence Score
+            qa_agg['Script_Adherence_Score'] = (
+                qa_agg['Total_Critical_Points_Hit'] / qa_agg['Total_Possible_Critical_Points'] * 100
+            )
+            
+            # Handle cases where Total_Possible_Critical_Points is 0
+            qa_agg = qa_agg.replace([np.inf, -np.inf], 0).fillna(0)
+            
+            return qa_agg[['Email', 'Script_Adherence_Score', 'Total_Calls_QA']]
+
+        except Exception as e:
+            print(f"Error processing QA Report: {e}")
+            return pd.DataFrame()
+    # --- END NEW METHOD ---
 
     def generate_final_report(self, file_paths):
         """Orchestrates all processing and merges data into a final report."""
@@ -264,7 +308,10 @@ class MetricsCalculator:
         rescission_metrics = self.process_rescissions(file_paths['rescissions'])
         enrollment_metrics = self.process_daily_enrollments(file_paths['daily_enrollment'])
         retention_metrics = self.process_retention_report(file_paths['retention'])
-        crm_metrics = self.process_crm_report(file_paths['crm']) # New
+        crm_metrics = self.process_crm_report(file_paths['crm']) 
+        # --- NEW: Process QA Report ---
+        qa_metrics = self.process_qa_report(file_paths['qa'])
+        # --- END NEW ---
         
         # Start with the active agent list
         final_df = self.active_agents_df.copy()
@@ -274,7 +321,10 @@ class MetricsCalculator:
         final_df = pd.merge(final_df, rescission_metrics, on='Agent_Name', how='left')
         final_df = pd.merge(final_df, enrollment_metrics, on='Agent_Name', how='left')
         final_df = pd.merge(final_df, retention_metrics, on='Agent_Name', how='left')
-        final_df = pd.merge(final_df, crm_metrics, on='Agent_Name', how='left') # New
+        final_df = pd.merge(final_df, crm_metrics, on='Agent_Name', how='left') 
+        # --- NEW: Merge QA Metrics ---
+        final_df = pd.merge(final_df, qa_metrics, on='Email', how='left')
+        # --- END NEW ---
         
         # Fill NaNs
         fill_zero_cols = [
@@ -283,7 +333,9 @@ class MetricsCalculator:
             'Enrollments', 'Rescissions', 'First_Drafts',
             'Total_Enrolled_Debt', 'Average_Enrolled_Debt', 'Cleared_Deals', 'Cleared_Debt_Load',
             'Total_Biweekly_Or_Split', 'Total_3_to_5_Day_Starts', # Mindset KPIs
-            'Total_New_Leads_MTD', 'Total_Credit_Pulls_MTD', 'Total_Submitted_To_Freedom_MTD' # CRM Metrics
+            'Total_New_Leads_MTD', 'Total_Credit_Pulls_MTD', 'Total_Submitted_To_Freedom_MTD',
+            # --- NEW: QA Columns ---
+            'Script_Adherence_Score', 'Total_Calls_QA' 
         ]
         for col in fill_zero_cols:
             if col in final_df.columns:
@@ -335,7 +387,10 @@ if __name__ == "__main__":
         "rescissions": ["../data_examples/rescission_report_example.csv"],
         "daily_enrollment": "../data_examples/daily_enrollment_example.csv",
         "retention": "../data_examples/retention_report_example.csv",
-        "crm": "../data_examples/CRM.csv" # Added CRM path
+        "crm": "../data_examples/CRM.csv",
+        # --- NEW PATH FOR QA REPORT ---
+        "qa": "../data_examples/quality_assurance_report.csv"
+        # --- END NEW ---
     }
     
     # --- EXECUTION ---
