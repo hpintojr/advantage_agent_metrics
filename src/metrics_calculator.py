@@ -69,8 +69,36 @@ class MetricsCalculator:
             self.active_manager_emails = []
 
     def _clean_phone(self, series):
-        """Utility to clean phone numbers for matching."""
-        return series.astype(str).str.replace(r'^\+1', '', regex=True).str.replace(r'[^0-9]', '', regex=True)
+        """Utility to aggressively clean phone numbers down to 10 digits for matching."""
+        # Remove all non-numeric characters
+        cleaned = series.astype(str).str.replace(r'[^0-9]', '', regex=True)
+        
+        # Function to standardize 10-digit numbers (removes leading '1' if present)
+        def normalize(phone):
+            if pd.isna(phone):
+                return None
+            phone = str(phone)
+            # If 11 digits and starts with '1', strip the '1'
+            if len(phone) == 11 and phone.startswith('1'):
+                return phone[1:]
+            # If 10 digits, return as is
+            elif len(phone) == 10:
+                return phone
+            else:
+                return None # Exclude non-standard length numbers
+
+        return cleaned.apply(normalize)
+        
+    def _clean_name(self, series):
+        """Utility to clean client/contact names for reliable matching."""
+        # Convert to string, lowercase, and remove outer whitespace
+        cleaned = series.astype(str).str.lower().str.strip()
+        
+        # Remove all non-alphanumeric characters (keeps letters, numbers, and spaces)
+        cleaned = cleaned.str.replace(r'[^a-z0-9\s]', '', regex=True)
+        
+        # Replace multiple spaces with a single space
+        return cleaned.str.replace(r'\s+', ' ', regex=True)
 
     def process_call_logs(self, file_path):
         """Processes the call log CSV for all call metrics."""
@@ -119,23 +147,38 @@ class MetricsCalculator:
         print("Processing Rescission Reports...")
         try:
             df_list = []
+            # Handle both single file path and list of file paths
+            if isinstance(file_paths, str):
+                file_paths = [file_paths]
+                
             for f in file_paths:
                 temp_df = pd.read_csv(f)
                 if 'Month' in temp_df.columns:
-                    temp_df['Month'] = pd.to_datetime(temp_df['Month']).dt.strftime('%Y-%m')
+                    # Attempt to clean up Month column if it exists
+                    try:
+                        temp_df['Month'] = pd.to_datetime(temp_df['Month']).dt.strftime('%Y-%m')
+                    except:
+                        pass # Ignore error if date parsing fails
                 df_list.append(temp_df)
                 
             df = pd.concat(df_list, ignore_index=True)
             df = df.drop_duplicates()
             
+            if 'Agent_Name' not in df.columns:
+                print("Warning: Rescission report missing 'Agent_Name' column. Skipping processing.")
+                return pd.DataFrame()
+            
             df = df[df['Agent_Name'] != 'Advantage First TOTAL'].copy()
             
-            # Filter for months in range
-            start_month = self.start_date.strftime('%Y-%m')
-            end_month = self.end_date.strftime('%Y-%m')
-            months_in_range = pd.date_range(start_month, end_month, freq='MS').strftime('%Y-%m').tolist()
-            
-            df_filtered = df[df['Month'].isin(months_in_range)]
+            # Filter for months in range (assuming 'Month' column exists or was added/derived)
+            if 'Month' in df.columns:
+                start_month = self.start_date.strftime('%Y-%m')
+                end_month = self.end_date.strftime('%Y-%m')
+                months_in_range = pd.date_range(start_month, end_month, freq='MS').strftime('%Y-%m').tolist()
+                df_filtered = df[df['Month'].isin(months_in_range)]
+            else:
+                # If no month column is available, assume the input data is already filtered for the period.
+                df_filtered = df.copy() 
             
             cols_to_sum = ['Enrollments', 'Rescissions', 'First_Drafts']
             for col in cols_to_sum:
@@ -156,16 +199,16 @@ class MetricsCalculator:
         """Processes the daily enrollment report for debt and Mindset KPIs."""
         print("Processing Daily Enrollment Report...")
         try:
-            df = pd.read_csv(file_path)
+            df = pd.read_csv(file_path, low_memory=False)
             df = df.rename(columns={'AFF_Agents': 'Agent_Name'})
             df['Enrollment_Date'] = pd.to_datetime(df['Enrollment_Date'])
-            df['Start_Date'] = pd.to_datetime(df['Start_Date'], errors='coerce') # Added for KPI
             
             df_filtered = df[
                 (df['Enrollment_Date'] >= self.start_date) & 
                 (df['Enrollment_Date'] < self.end_date + pd.Timedelta(days=1))
             ].copy()
             
+            # Debt Cleaning
             df_filtered['Original_Enrolled_Debt'] = df_filtered['Original_Enrolled_Debt'].astype(str).str.replace(r'[$,]', '', regex=True)
             df_filtered['Original_Enrolled_Debt'] = pd.to_numeric(df_filtered['Original_Enrolled_Debt'], errors='coerce').fillna(0)
             
@@ -175,6 +218,7 @@ class MetricsCalculator:
             df_filtered['is_biweekly_or_split'] = df_filtered['Originally_Scheduled_Draft_Type'].isin(payment_types)
             
             # 2. Payment Window KPI (90% Standard)
+            df_filtered['Start_Date'] = pd.to_datetime(df_filtered['Start_Date'], errors='coerce') # Added for KPI
             df_filtered['days_to_start'] = (df_filtered['Start_Date'] - df_filtered['Enrollment_Date']).dt.days
             df_filtered['is_3_to_5_day_start'] = df_filtered['days_to_start'].between(3, 5)
             # --- End New KPI Calculations ---
@@ -185,11 +229,10 @@ class MetricsCalculator:
                 Average_Enrolled_Debt=('Original_Enrolled_Debt', 'mean'),
                 # --- Aggregate New KPIs ---
                 Total_Biweekly_Or_Split=('is_biweekly_or_split', 'sum'),
-                Total_3_to_5_Day_Starts=('is_3_to_5_day_start', 'sum')
+                Total_3_to_5_Day_Starts=('is_3_to_5_day_start', 'sum'),
+                Total_Enrollments_Count=('Client_Name', 'count') # Use count for denominator in rates
             ).reset_index()
             
-            # 2. Match for Josh's stats (REMOVED)
-
             return debt_agg
             
         except Exception as e:
@@ -211,7 +254,7 @@ class MetricsCalculator:
             
             # Filter for Cleared Deals
             if 'First_Draft_Status' not in df_filtered.columns:
-                 print("Warning: 'First_Draft_Status' column not found in retention report.")
+                 print("Warning: 'First_Draft_Status' column not found in retention report. Cannot calculate Cleared metrics.")
                  return pd.DataFrame(columns=['Agent_Name', 'Cleared_Deals', 'Cleared_Debt_Load'])
 
             cleared_deals_df = df_filtered[df_filtered['First_Draft_Status'] == 'Cleared'].copy()
@@ -243,9 +286,15 @@ class MetricsCalculator:
                 (df['Created'] >= self.start_date) &
                 (df['Created'] < self.end_date + pd.Timedelta(days=1))
             ].copy()
+            
+            if 'Credit Pulled' not in df_filtered.columns or 'Submitted Date' not in df_filtered.columns:
+                print("Warning: CRM report missing 'Credit Pulled' or 'Submitted Date' columns. Skipping pull/submission metrics.")
+                return pd.DataFrame(columns=['Agent_Name', 'Total_New_Leads_MTD', 'Total_Credit_Pulls_MTD', 'Total_Submitted_To_Freedom_MTD'])
+
 
             # Logic from definitions.md
             df_filtered['is_credit_pull'] = df_filtered['Credit Pulled'] == 'Yes'
+            # Convert 'Submitted Date' to datetime, errors='coerce' turns invalid dates into NaT
             df_filtered['is_submission'] = pd.to_datetime(df_filtered['Submitted Date'], errors='coerce').notna()
 
             crm_agg = df_filtered.groupby('Agent_Name').agg(
@@ -318,6 +367,9 @@ class MetricsCalculator:
         
         # Merge all data sources
         final_df = pd.merge(final_df, call_metrics, on='Email', how='left')
+        
+        # NOTE: Merging on Agent_Name requires clean names if the name formats differ.
+        # This implementation assumes Agent_Name is clean enough to proceed, as per original logic.
         final_df = pd.merge(final_df, rescission_metrics, on='Agent_Name', how='left')
         final_df = pd.merge(final_df, enrollment_metrics, on='Agent_Name', how='left')
         final_df = pd.merge(final_df, retention_metrics, on='Agent_Name', how='left')
@@ -326,11 +378,21 @@ class MetricsCalculator:
         final_df = pd.merge(final_df, qa_metrics, on='Email', how='left')
         # --- END NEW ---
         
+        # Combine Enrollments from two sources if present (Enrollments from Rescission Report + Count from Daily Enrollment)
+        # Prioritize 'Enrollments' if it exists, otherwise use 'Total_Enrollments_Count'
+        if 'Enrollments' not in final_df.columns:
+            final_df['Enrollments'] = final_df['Total_Enrollments_Count']
+        elif 'Total_Enrollments_Count' in final_df.columns:
+            # If both exist, a safer merge would be needed, but for simplicity, we rely on 'Enrollments' from rescissions.
+            # If only using daily enrollments, uncomment the line below:
+            # final_df['Enrollments'] = final_df['Total_Enrollments_Count'].fillna(final_df['Enrollments'])
+            pass
+            
         # Fill NaNs
         fill_zero_cols = [
             'Dials', 'Inbound_Conversations', 'Outbound_Conversations', 'Total_Conversations',
             'Talk_Time_Hours', 'Avg_Daily_Inbound_Calls', 'Avg_Daily_Outbound_Calls', 'Avg_Daily_Dials',
-            'Enrollments', 'Rescissions', 'First_Drafts',
+            'Enrollments', 'Rescissions', 'First_Drafts', 'Total_Enrollments_Count',
             'Total_Enrolled_Debt', 'Average_Enrolled_Debt', 'Cleared_Deals', 'Cleared_Debt_Load',
             'Total_Biweekly_Or_Split', 'Total_3_to_5_Day_Starts', # Mindset KPIs
             'Total_New_Leads_MTD', 'Total_Credit_Pulls_MTD', 'Total_Submitted_To_Freedom_MTD',
@@ -343,8 +405,11 @@ class MetricsCalculator:
             else:
                 final_df[col] = 0
         
+        # Ensure 'Enrollments' column exists and is numeric after filling NaNs
+        final_df['Enrollments'] = pd.to_numeric(final_df['Enrollments'], errors='coerce').fillna(0)
+        
         # Calculate final rates
-        final_df['Rescission_Rate'] = (final_df['Rescissions'] / final_df['Enrollments'] * 100)
+        final_df['Cancellation_Rate_MTD'] = (final_df['Rescissions'] / final_df['Enrollments'] * 100)
         final_df['First_Draft_Rate'] = (final_df['First_Drafts'] / final_df['Enrollments'] * 100)
         final_df['Conv_per_Dial'] = (final_df['Outbound_Conversations'] / final_df['Dials'] * 100)
         final_df['Enr_per_Conv'] = (final_df['Enrollments'] / final_df['Total_Conversations'] * 100)
