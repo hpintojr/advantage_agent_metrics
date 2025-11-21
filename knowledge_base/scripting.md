@@ -18,9 +18,7 @@ Use the appropriate pickup line based on the lead type.
 
 
 
-Live Inbound Campaigns 
-
-
+Live Inbound Campaigns
 
 
 
@@ -28,15 +26,15 @@ Live Transfers (Live XferPH - Call Center) :
 
 
 
-Agent: “Thank you for calling, this is \\\[Agent Name] with Advantage First Financial.” 
+Agent: “Thank you for calling, this is \\\[Agent Name] with Advantage First Financial.”
 
 
 
-(Wait for transfer agent introduction) 
+(Wait for transfer agent introduction)
 
 
 
-Agent: “Hi \\\[Client’s Name], my name is \\\[Agent Name]. I understand you’re looking to get a personal loan — I’m happy to help you with that today." 
+Agent: “Hi \\\[Client’s Name], my name is \\\[Agent Name]. I understand you’re looking to get a personal loan — I’m happy to help you with that today."
 
 
 
@@ -44,19 +42,19 @@ Direct Connect Calls (ALL Advantage Live Leads - Web Lead) :
 
 
 
-Agent: “Thank you for calling, this is \\\[Agent Name] at Advantage First Financial — who am I speaking with?” 
+Agent: “Thank you for calling, this is \\\[Agent Name] at Advantage First Financial — who am I speaking with?”
 
 
 
-(Client responds) 
+(Client responds)
 
 
 
-Agent: “Great, \\\[Client’s Name]! I understand you recently filled out an application and you're looking for a personal loan — awesome. Let me just verify a few quick details and we’ll get you started.” 
+Agent: “Great, \\\[Client’s Name]! I understand you recently filled out an application and you're looking for a personal loan — awesome. Let me just verify a few quick details and we’ll get you started.”
 
 
 
-AI Contact \\\& Follow-up Campaigns 
+AI Contact \\\& Follow-up Campaigns
 
 
 
@@ -64,15 +62,15 @@ Mailer Clients (AI-Mailer) :
 
 
 
-Agent: “Thank you for calling, this is \\\[Agent Name] with Advantage First Financial — who am I speaking with today?” 
+Agent: “Thank you for calling, this is \\\[Agent Name] with Advantage First Financial — who am I speaking with today?”
 
 
 
-(Client responds) 
+(Client responds)
 
 
 
-Agent: “It looks like we may have sent you a mailer. If you don’t have the code handy, no problem — I can look you up by your phone number. ... Perfect, thank you for that. Now, most of our clients are looking to do some form of debt consolidation. What are you hoping to accomplish today?” 
+Agent: “It looks like we may have sent you a mailer. If you don’t have the code handy, no problem — I can look you up by your phone number. ... Perfect, thank you for that. Now, most of our clients are looking to do some form of debt consolidation. What are you hoping to accomplish today?”
 
 
 
@@ -80,11 +78,11 @@ Advantage Live Lead (AI-ALL) :
 
 
 
-Agent: “Thank you for calling, this is \\\[Agent Name] with Advantage First Financial. It looks like you were speaking with Avery—he’s one of our coordinators—and I see you recently filled out an application for a personal loan.” 
+Agent: “Thank you for calling, this is \\\[Agent Name] with Advantage First Financial. It looks like you were speaking with Avery—he’s one of our coordinators—and I see you recently filled out an application for a personal loan.”
 
 
 
-Agent: “Great! Let me go ahead and pull up your information so we can get you started.” 
+Agent: “Great! Let me go ahead and pull up your information so we can get you started.”
 
 
 
@@ -92,7 +90,7 @@ AI-WEB (Live XferPH - Call Center) :
 
 
 
-Agent: “Thanks for calling, this is \\\[Agent Name] at Advantage First Financial. How can I help you today — were you looking to consolidate debt or explore a personal loan?" 
+Agent: “Thanks for calling, this is \\\[Agent Name] at Advantage First Financial. How can I help you today — were you looking to consolidate debt or explore a personal loan?"
 
 
 
@@ -104,23 +102,23 @@ Call Opening (Generic)
 
 
 
-"Hi (Prospect’s Name), this is \\\_\\\_\\\_\\\_ with Advantage First on a recorded line." 
+"Hi (Prospect’s Name), this is \\\_\\\_\\\_\\\_ with Advantage First on a recorded line."
 
 
 
-\\\[PREFRAME] "Thank you for taking the time to speak to my transfer agent. They mentioned you were looking to pay off some personal loans and credit cards, is that correct? Okay they mentioned you have at least $20k, is that right?" 
+\\\[PREFRAME] "Thank you for taking the time to speak to my transfer agent. They mentioned you were looking to pay off some personal loans and credit cards, is that correct? Okay they mentioned you have at least $20k, is that right?"
 
 
 
-"This is the best number to reach you back at if we were disconnected right?" 
+"This is the best number to reach you back at if we were disconnected right?"
 
 
 
-SMS Opt-In: "It’s okay if I text you with any updates, and my contact info? (Text in Dialpad)" 
+SMS Opt-In: "It’s okay if I text you with any updates, and my contact info? (Text in Dialpad)"
 
 
 
-"Perfect, (Prospect’s Name). As your financial consultant I am going to get to know your situation, ask you a few questions and see what kind of results or options we can help you with. I have your application in front of me. So, let me verify your information and let’s see how we can help. (Just verify name address phone number email at this point)" 
+"Perfect, (Prospect’s Name). As your financial consultant I am going to get to know your situation, ask you a few questions and see what kind of results or options we can help you with. I have your application in front of me. So, let me verify your information and let’s see how we can help. (Just verify name address phone number email at this point)"
 
 
 
@@ -128,47 +126,47 @@ Discovery Questions \\\& "PAIN"
 
 
 
-"My underwriter is going want to know a little bit more about the debts:" 
+"My underwriter is going want to know a little bit more about the debts:"
 
 
 
-"What is the total balance you would want to pay off? $\\\_\\\_\\\_\\\_\\\_\\\_." 
+"What is the total balance you would want to pay off? $\\\_\\\_\\\_\\\_\\\_\\\_."
 
 
 
-"What (roughly) are you paying per month on these bills? $\\\_\\\_\\\_\\\_\\\_." 
+"What (roughly) are you paying per month on these bills? $\\\_\\\_\\\_\\\_\\\_."
 
 
 
-"Is your goal to lower the payment or are you looking to pay it off quickly?" 
+"Is your goal to lower the payment or are you looking to pay it off quickly?"
 
 
 
-"My underwriters always want to know if you are still using the cards or if you want to pay them off and be done with them?" 
+"My underwriters always want to know if you are still using the cards or if you want to pay them off and be done with them?"
 
 
 
-"What kind of interest rates are you carrying on this debt? \\\_\\\_\\\_\\\_%" 
+"What kind of interest rates are you carrying on this debt? \\\_\\\_\\\_\\\_%"
 
 
 
-"How long have you been paying on this debt with the current balance?" 
+"How long have you been paying on this debt with the current balance?"
 
 
 
-"Are you seeing your balance going down after you have made your payments?" 
+"Are you seeing your balance going down after you have made your payments?"
 
 
 
-"So would you say your payments are going to mostly interest?" 
+"So would you say your payments are going to mostly interest?"
 
 
 
-"After you have paid all your bills, how much money do you have left over to help pay these types of debt down every month?" 
+"After you have paid all your bills, how much money do you have left over to help pay these types of debt down every month?"
 
 
 
-"So with only $XXX left over it’s almost impossible to pay down this type of debt on your own, am I right?" 
+"So with only $XXX left over it’s almost impossible to pay down this type of debt on your own, am I right?"
 
 
 
@@ -176,23 +174,23 @@ Find the "PAIN":
 
 
 
-Ask What Happened: "Do you mind if I ask you how you accumulate this type of debt?...was there a specific reason/WHAT HAPPENED? That this debt grew so much on you?" 
+Ask What Happened: "Do you mind if I ask you how you accumulate this type of debt?...was there a specific reason/WHAT HAPPENED? That this debt grew so much on you?"
 
 
 
-Relate to the Client: "I remember back 12 years ago when I was in debt due to Divorce Ect… I was carrying 50k in debt and stressed-out..." 
+Relate to the Client: "I remember back 12 years ago when I was in debt due to Divorce Ect… I was carrying 50k in debt and stressed-out..."
 
 
 
-Acknowledge \\\& Separate: "Wow, I’m sorry to hear that you went through that. This makes so much sense, no wonder you’re in this position. It's not like you were out spending a bunch of money. You had a medical emergency..." 
+Acknowledge \\\& Separate: "Wow, I’m sorry to hear that you went through that. This makes so much sense, no wonder you’re in this position. It's not like you were out spending a bunch of money. You had a medical emergency..."
 
 
 
-Win Them Over: "I’m glad you mentioned your \\\[Cause]. I am the best at what I do here, client, and very excited I’m helping you. I’m making you a priority today to get this resolved- because you Deserve IT!" 
+Win Them Over: "I’m glad you mentioned your \\\[Cause]. I am the best at what I do here, client, and very excited I’m helping you. I’m making you a priority today to get this resolved- because you Deserve IT!"
 
 
 
-Transition: "Ok I can see why now you are looking to pay off your debt” “Let’s finish your Application and see what we can do to help”" 
+Transition: "Ok I can see why now you are looking to pay off your debt” “Let’s finish your Application and see what we can do to help”"
 
 
 
@@ -200,39 +198,39 @@ Application \\\& Housing
 
 
 
-"What do you do for work/ what’s your profession?" 
+"What do you do for work/ what’s your profession?"
 
 
 
-"How long have you been doing that?" 
+"How long have you been doing that?"
 
 
 
-"Are you Employed or Self Employed" 
+"Are you Employed or Self Employed"
 
 
 
-"What do you take home from that every month?" 
+"What do you take home from that every month?"
 
 
 
-"How often do you get paid?" 
+"How often do you get paid?"
 
 
 
-"Also, are you married or single? Is this debt joint or is it all in your name?" 
+"Also, are you married or single? Is this debt joint or is it all in your name?"
 
 
 
-"And do you rent or own where you live?" 
+"And do you rent or own where you live?"
 
 
 
-"How much is your Rent/Mtg payment?" 
+"How much is your Rent/Mtg payment?"
 
 
 
-"And what’s the best email once I get you some approvals, documents, and disclosures?" 
+"And what’s the best email once I get you some approvals, documents, and disclosures?"
 
 
 
@@ -240,19 +238,19 @@ Soft Credit Check
 
 
 
-"Ok (Prospect’s Name) we are almost done. Now underwriting is going to need to see your credit profile to see what the balances and creditor you want to pay off.. “To validate your identity and review your debts, do we have your consent to run a soft credit pull? This will have no impact on your credit. (MUST BE VERBAL YES)" 
+"Ok (Prospect’s Name) we are almost done. Now underwriting is going to need to see your credit profile to see what the balances and creditor you want to pay off.. “To validate your identity and review your debts, do we have your consent to run a soft credit pull? This will have no impact on your credit. (MUST BE VERBAL YES)"
 
 
 
-"What's your DOB?" 
+"What's your DOB?"
 
 
 
-"And social? (repeat back)" 
+"And social? (repeat back)"
 
 
 
-(Run Credit) 
+(Run Credit)
 
 
 
@@ -260,27 +258,27 @@ Creditor Summary \\\& Results
 
 
 
-"Ok (Prospect’s Name) I have your Credit profile in front of me... please grab a pen and paper so you can take down some quick notes..." 
+"Ok (Prospect’s Name) I have your Credit profile in front of me... please grab a pen and paper so you can take down some quick notes..."
 
 
 
-(Go over each creditor's balance, payment, and utilization) 
+(Go over each creditor's balance, payment, and utilization)
 
 
 
-"Ok so we are going to pay off a total of \\\_\\\_ primary accounts (write that down) which total $\\\_\\\_\\\_, (write that down) and your minimum payments are $\\\_\\\_\\\_\\\_\\\_ per month (write that down). Is that correct?" 
+"Ok so we are going to pay off a total of \\\_\\\_ primary accounts (write that down) which total $\\\_\\\_\\\_, (write that down) and your minimum payments are $\\\_\\\_\\\_\\\_\\\_ per month (write that down). Is that correct?"
 
 
 
-"With these balances and minimum payments you are on track to pay back a total of $\\\_\\\_\\\_\\\_\\\_\\\_\\\_ over #\\\_\\\_\\\_\\\_\\\_\\\_ months. That is crazy." 
+"With these balances and minimum payments you are on track to pay back a total of $\\\_\\\_\\\_\\\_\\\_\\\_\\\_ over #\\\_\\\_\\\_\\\_\\\_\\\_ months. That is crazy."
 
 
 
-Self-Realization: "The major reason why your credit worthiness is dropping... is because of the high utilization being at \\\_\\\_\\\_\\\_% and more importantly only having $\\\_\\\_\\\_\\\_ left over every month is not enough to pay these balances down. Until this credit card debt is eliminated, your credit worthiness will continue to be negatively impacted. Does this make sense?" 
+Self-Realization: "The major reason why your credit worthiness is dropping... is because of the high utilization being at \\\_\\\_\\\_\\\_% and more importantly only having $\\\_\\\_\\\_\\\_ left over every month is not enough to pay these balances down. Until this credit card debt is eliminated, your credit worthiness will continue to be negatively impacted. Does this make sense?"
 
 
 
-Discuss Results (Send Evo/Monevo link): 
+Discuss Results (Send Evo/Monevo link):
 
 
 
@@ -288,7 +286,7 @@ If Loan Approved: Go over details and have them click the link .
 
 
 
-If DECLINED (Transition): "Ok as you can see the lenders that reviewed your credit and Debt to Income and it doesn’t look like you met any of the underwriting criteria to be approved for a loan... (Prospect’s Name) It really goes back to the high utilizations and the compounding interest... you are not lendable." 
+If DECLINED (Transition): "Ok as you can see the lenders that reviewed your credit and Debt to Income and it doesn’t look like you met any of the underwriting criteria to be approved for a loan... (Prospect’s Name) It really goes back to the high utilizations and the compounding interest... you are not lendable."
 
 
 
@@ -296,23 +294,23 @@ The Solution (Pivot to Debt Settlement)
 
 
 
-HIGH ENERGY: "This turned out to be GREAT NEWS, If you look at the top you were approved from Freedom." 
+HIGH ENERGY: "This turned out to be GREAT NEWS, If you look at the top you were approved from Freedom."
 
 
 
-"Unlike all the lenders who did not approve you, Freedom understands your situation." 
+"Unlike all the lenders who did not approve you, Freedom understands your situation."
 
 
 
-"So what I like about this approval is it takes out the compounding interest... with ZERO percent and a new lower payment that goes all to principal on a reduced balance." 
+"So what I like about this approval is it takes out the compounding interest... with ZERO percent and a new lower payment that goes all to principal on a reduced balance."
 
 
 
-"Your new lower payment is $\\\_\\\_\\\_\\\_\\\_\\\_, this will save you $\\\_\\\_\\\_\\\_\\\_ every month too!. How does that sound?" 
+"Your new lower payment is $\\\_\\\_\\\_\\\_\\\_\\\_, this will save you $\\\_\\\_\\\_\\\_\\\_ every month too!. How does that sound?"
 
 
 
-"First of all I really love Freedom... They have been around the longest since 2002. They have settled over 19 BILLION dollars of debt for over 1 MILLION clients just like you." 
+"First of all I really love Freedom... They have been around the longest since 2002. They have settled over 19 BILLION dollars of debt for over 1 MILLION clients just like you."
 
 
 
@@ -320,19 +318,15 @@ How It Works:
 
 
 
-"The first thing Freedom will do is reach out to your creditors. They're going to get new terms in place... They typically reduce your balance by 50% or more." 
+"The first thing Freedom will do is reach out to your creditors. They're going to get new terms in place... They typically reduce your balance by 50% or more."
 
 
 
-"What I like is the way Freedom works, when they get new terms in place... they're going to send them to you for your approval. So you are still in control ok?" 
+"What I like is the way Freedom works, when they get new terms in place... they're going to send them to you for your approval. So you are still in control ok?"
 
 
 
-"Now you will not be paying your creditors directly any more, Your new payment of $\\\_\\\_\\\_\\\_ will automatically be deposited into a FDIC trust account, this account is in your name and your name only." 
-
-
-
-"Remember they are restructuring your balances for pay off only... So do not use the card moving forward, does that make sense?" 
+"Now you will not be paying your creditors directly any more, Your new payment of $\\\_\\\_\\\_\\\_ will automatically be deposited into a dedicated FDIC account, which is held in your name only. (You may also refer to this as the 'Crossroads Account' or 'CFT Account')." "Remember they are restructuring your balances for pay off only... So do not use the card moving forward, does that make sense?"
 
 
 
@@ -340,15 +334,15 @@ Budget, Compliance, and Disclosures
 
 
 
-Budget/Hardship: "Ok (Prospect’s Name) Freedom is going to want to verify a budget and the reason you had to use the cards and personal loans before I can submit for final approval, ok?" 
+Budget/Hardship: "Ok (Prospect’s Name) Freedom is going to want to verify a budget and the reason you had to use the cards and personal loans before I can submit for final approval, ok?"
 
 
 
-(Confirm housing costs, basic expenses. Disposable income must be $50+ over new payment) 
+(Confirm housing costs, basic expenses. Disposable income must be $50+ over new payment)
 
 
 
-(Reiterate hardship story and put in notes) 
+(Reiterate hardship story and put in notes)
 
 
 
@@ -356,35 +350,35 @@ Disclosures:
 
 
 
-"Good news we have everything approved and your documents are being generated." 
+"Good news we have everything approved and your documents are being generated."
 
 
 
-Results: "Most clients start seeing results within the first 1–3 months. 40% of my clients see results the first month..." 
+Results: "Most clients start seeing results within the first 1–3 months. 40% of my clients see results the first month..."
 
 
 
-Credit: "...while there may be a short-term impact to your credit, most people start to see improvement again around the 6-month mark." 
+Credit: "...while there may be a short-term impact to your credit, most people start to see improvement again around the 6-month mark."
 
 
 
-Fees: "There’s no upfront cost — Freedom only earns a fee (25% of what they save you) once they successfully settle each account, and that’s already built into your monthly payment." 
+Fees: "There’s no upfront cost — Freedom only earns a fee (25% of what they save you) once they successfully settle each account, and that’s already built into your monthly payment."
 
 
 
-Creditor Calls: "You won’t use the cards enrolled anymore, and you may get calls from creditors during the process — that’s totally normal. Just ignore unknown numbers and let Freedom handle all communication..." 
+Creditor Calls: "You won’t use the cards enrolled anymore, and you may get calls from creditors during the process — that’s totally normal. Just ignore unknown numbers and let Freedom handle all communication..."
 
 
 
-Compliance Audio Call: "Really quick I have a short compliance audio recording to listen to... It covers everything we talked about..." 
+Compliance Audio Call: "Really quick I have a short compliance audio recording to listen to... It covers everything we talked about..."
 
 
 
-(Pre-frame lawsuits, credit impact, 1099) 
+(Pre-frame lawsuits, credit impact, 1099)
 
 
 
-(Play audio: FDR: 480-880-3099 or TURNBULL: 480-880-3115) 
+(Play audio: FDR: 480-880-3099 or TURNBULL: 480-880-3115)
 
 
 
@@ -396,19 +390,19 @@ Send Docs \\\& Sign:
 
 
 
-"Awesome, \\\[Prospect’s Name], you’re almost there. We can do bi-weekly... Which date works best for you?" 
+"Awesome, \\\[Prospect’s Name], you’re almost there. We can do bi-weekly... Which date works best for you?"
 
 
 
-"Also the monthly payment was going to be set up automatically — would you be using it as a checking or savings?" 
+"Also the monthly payment was going to be set up automatically — would you be using it as a checking or savings?"
 
 
 
-(Get bank name, routing, and account number) 
+(Get bank name, routing, and account number)
 
 
 
-"Perfect, I have the disclosures now, you should see an email. Open that up and let me know when you see the first page. (Sign them)." 
+"Perfect, I have the disclosures now, you should see an email. Open that up and let me know when you see the first page. (Sign them)."
 
 
 
@@ -416,27 +410,27 @@ Mandatory Welcome Call:
 
 
 
-"MANDATORY send the client to the welcome call or the DEAL DOES NOT QUALIFY." 
+"MANDATORY send the client to the welcome call or the DEAL DOES NOT QUALIFY."
 
 
 
-(Transfer to Welcome Call: Dial Pad #3 Welcome Call, 833-582-3786) 
+(Transfer to Welcome Call: Dial Pad #3 Welcome Call, 833-582-3786)
 
 
 
-"Welcome them to the family... A welcome call is like a warm hug." 
+"Welcome them to the family... A welcome call is like a warm hug."
 
 
 
-"They will walk you through the portal access or can you go to your app store and download the app." 
+"They will walk you through the portal access or can you go to your app store and download the app."
 
 
 
-(Instruct client to turn off auto-pays) 
+(Instruct client to turn off auto-pays)
 
 
 
-"Please use your online portal to track your program or ask for help, THIS is the BEST resource for you." 
+"Please use your online portal to track your program or ask for help, THIS is the BEST resource for you."
 
 
 
@@ -444,11 +438,11 @@ Post-Call:
 
 
 
-"Set up a 2-day call to check in on them – ADD TO YOUR CALENDER - THIS IS CRUCIAL!" 
+"Set up a 2-day call to check in on them – ADD TO YOUR CALENDER - THIS IS CRUCIAL!"
 
 
 
-"ONCE YOU UPDATE THE STATUS TO SOLD ASK FOR A TRUST PILOT REVIEW!!!!!!!" 
+"ONCE YOU UPDATE THE STATUS TO SOLD ASK FOR A TRUST PILOT REVIEW!!!!!!!"
 
 
 
@@ -460,41 +454,175 @@ You must hit every milestone on every call.
 
 
 
-| ID | Milestone Description | Script Reference |
+ID
 
-| :--- | :--- | :--- |
 
-| \*\*1\*\* | \*\*Pen and Paper\*\* (Client writes down agent's name/number/figures) | Script 755 |
 
-| \*\*2\*\* | \*\*Eliminate Moral Obligation\*\* (Client admits debt already paid/still owes) | Script 757 |
+Milestone Description
 
-| \*\*3\*\* | \*\*How Long to Pay Off\*\* (Client admits/writes down current payoff time) | Script 759 |
 
-| \*\*4\*\* | \*\*No Money Left Over\*\* (Client admits budget is tight/no residual income) | Script 761 |
 
-| \*\*5\*\* | \*\*Attempt Loan (Code 10)\*\* (Agent states they \*tried\* loan, declined due to DTC/DTI) | Script 763 |
+Script Reference
 
-| \*\*6\*\* | \*\*Pivot to "Great News" (DS)\*\* (Transition to Debt Settlement with high energy) | Script 765 |
 
-| \*\*7\*\* | \*\*Partner ID\*\* (Identify partner: Freedom, Turnbull) | Script 768 |
 
-| \*\*8\*\* | \*\*What it Does\*\* (Explain securing new terms, stopping interest, partial reduction) | Script 769 |
+\*\*1\*\*
 
-| \*\*9\*\* | \*\*The Process\*\* (New payment to FDIC Crossroads account - write down CFT) | Script 770 |
 
-| \*\*10\*\* | \*\*New Term\*\* (Compare new term to old term - LOOKS AMAZING) | Script 772 |
 
-| \*\*11\*\* | \*\*Credit Impact\*\* (Address temporary impact, turn into positive of new offers in 6 months) | Script 774 |
+\*\*Pen and Paper\*\* (Client writes down agent's name/number/figures)
 
-| \*\*12\*\* | \*\*Fees\*\* (Disclose fees factored into payment, no upfront cost) | Script 776 |
 
-| \*\*13\*\* | \*\*Assume Sale\*\* (Ask for disclosures/ASSUME THE SALE) | Script 779 |
+
+Script 755
+
+
+
+\*\*2\*\*
+
+
+
+\*\*Eliminate Moral Obligation\*\* (Client admits debt already paid/still owes)
+
+
+
+Script 757
+
+
+
+\*\*3\*\*
+
+
+
+\*\*How Long to Pay Off\*\* (Client admits/writes down current payoff time)
+
+
+
+Script 759
+
+
+
+\*\*4\*\*
+
+
+
+\*\*No Money Left Over\*\* (Client admits budget is tight/no residual income)
+
+
+
+Script 761
+
+
+
+\*\*5\*\*
+
+
+
+\*\*Attempt Loan (Code 10)\*\* (Agent states they \*tried\* loan, declined due to DTC/DTI)
+
+
+
+Script 763
+
+
+
+\*\*6\*\*
+
+
+
+\*\*Pivot to "Great News" (DS)\*\* (Transition to Debt Settlement with high energy)
+
+
+
+Script 765
+
+
+
+\*\*7\*\*
+
+
+
+\*\*Partner ID\*\* (Identify partner: Freedom, Turnbull)
+
+
+
+Script 768
+
+
+
+\*\*8\*\*
+
+
+
+\*\*What it Does\*\* (Explain securing new terms, stopping interest, partial reduction)
+
+
+
+Script 769
+
+
+
+\*\*9\*\*
+
+
+
+\*\*The Process (FDIC/Client Control)\*\* (New payment to dedicated FDIC account held in client name; Acceptable alternative: FDIC Crossroads account - Write down CFT)
+
+
+
+Script 770
+
+
+
+\*\*10\*\*
+
+
+
+\*\*New Term\*\* (Compare new term to old term - LOOKS AMAZING)
+
+
+
+Script 772
+
+
+
+\*\*11\*\*
+
+
+
+\*\*Credit Impact\*\* (Address temporary impact, turn into positive of new offers in 6 months)
+
+
+
+Script 774
+
+
+
+\*\*12\*\*
+
+
+
+\*\*Fees\*\* (Disclose fees factored into payment, no upfront cost)
+
+
+
+Script 776
+
+
+
+\*\*13\*\*
+
+
+
+\*\*Assume Sale\*\* (Ask for disclosures/ASSUME THE SALE)
+
+
+
+Script 779
 
 
 
 \*\*Adherence Score Note:\*\* For Quality Assurance and compliance tracking, the Script Adherence Score is based on hitting all \*\*15 Critical Points\*\*, which include the 13 Milestones above PLUS the \*\*Compliance Audio Call\*\* (Script 683) and the \*\*Mandatory Welcome Call\*\* (Script 708).
-
-
 
 4\\. Spanish Script (Full)
 
