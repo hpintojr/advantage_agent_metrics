@@ -1,8 +1,8 @@
-Agent Scripts \\\& Talk Tracks
+Agent Scripts \\ Talk Tracks
 
 
 
-This file contains all official call scripts, milestones, and talk tracks, compiled from Advantage First Script 5.1 Condensed.docx, Milestones on every call! .docx, PAIN Winning Client Over.docx, Spanish Script ADV1st.docx, and AFF - CHEAT SHEET FOR ALL MARKETING CAMPAIGNS AND LEADS.docx.
+This file contains all official call scripts, milestones, and talk tracks, updated for FDR Compliance (Oct 2025).
 
 
 
@@ -54,7 +54,7 @@ Agent: “Great, \\\[Client’s Name]! I understand you recently filled out an a
 
 
 
-AI Contact \\\& Follow-up Campaigns
+AI Contact \\ Follow-up Campaigns
 
 
 
@@ -94,7 +94,7 @@ Agent: “Thanks for calling, this is \\\[Agent Name] at Advantage First Financi
 
 
 
-2\\. Main Call Flow (Script 5.1 Condensed)
+2\\. Main Call Flow (Script 5.1 - FDR Compliant)
 
 
 
@@ -118,11 +118,11 @@ SMS Opt-In: "It’s okay if I text you with any updates, and my contact info? (T
 
 
 
-"Perfect, (Prospect’s Name). As your financial consultant I am going to get to know your situation, ask you a few questions and see what kind of results or options we can help you with. I have your application in front of me. So, let me verify your information and let’s see how we can help. (Just verify name address phone number email at this point)"
+"Perfect, (Prospect’s Name). As your financial consultant I am going to get to know your situation, ask you a few questions and see what kind of results or options we can help you with. I have your application in front of me. So, let me verify your information and let’s see how we can help." (Verify Name. NOTE: Do not verify sensitive info like SSN/DOB until AFTER approval).
 
 
 
-Discovery Questions \\\& "PAIN"
+Discovery Questions \\ "PAIN"
 
 
 
@@ -182,7 +182,7 @@ Relate to the Client: "I remember back 12 years ago when I was in debt due to Di
 
 
 
-Acknowledge \\\& Separate: "Wow, I’m sorry to hear that you went through that. This makes so much sense, no wonder you’re in this position. It's not like you were out spending a bunch of money. You had a medical emergency..."
+Acknowledge \\ Separate: "Wow, I’m sorry to hear that you went through that. This makes so much sense, no wonder you’re in this position. It's not like you were out spending a bunch of money. You had a medical emergency..."
 
 
 
@@ -194,7 +194,7 @@ Transition: "Ok I can see why now you are looking to pay off your debt” “Let
 
 
 
-Application \\\& Housing
+Application \\ Housing
 
 
 
@@ -234,11 +234,15 @@ Application \\\& Housing
 
 
 
-Soft Credit Check
+Soft Credit Check (FDR VERBATIM REQUIRED)
 
 
 
-"Ok (Prospect’s Name) we are almost done. Now underwriting is going to need to see your credit profile to see what the balances and creditor you want to pay off.. “To validate your identity and review your debts, do we have your consent to run a soft credit pull? This will have no impact on your credit. (MUST BE VERBAL YES)"
+"Ok (Prospect’s Name) we are almost done. Now underwriting is going to need to review your debts...
+
+
+
+"In order to verify your identity, you need to authorize \\\[Freedom Debt Relief / Turnbull] to access your credit report for debt review purposes. Please confirm your authorization to access your credit report for this purpose by stating 'I Agree' and pressing any key now."
 
 
 
@@ -254,7 +258,7 @@ Soft Credit Check
 
 
 
-Creditor Summary \\\& Results
+Creditor Summary \\ Results
 
 
 
@@ -266,15 +270,15 @@ Creditor Summary \\\& Results
 
 
 
-"Ok so we are going to pay off a total of \\\_\\\_ primary accounts (write that down) which total $\\\_\\\_\\\_, (write that down) and your minimum payments are $\\\_\\\_\\\_\\\_\\\_ per month (write that down). Is that correct?"
+"Ok so we are going to pay off a total of \\\_\\\_ primary accounts (write that down) which total $\\\_\\\_\\\_, (write that down) and your minimum payments are $\\\_\\\_\\\_\\\_\\\_\\\_ per month (write that down). Is that correct?"
 
 
 
-"With these balances and minimum payments you are on track to pay back a total of $\\\_\\\_\\\_\\\_\\\_\\\_\\\_ over #\\\_\\\_\\\_\\\_\\\_\\\_ months. That is crazy."
+"With these balances and minimum payments you are on track to pay back a total of $\\\_\\\_\\\_\\\_\\\_\\\_\\\_\\\_ over #\\\_\\\_\\\_\\\_\\\_\\\_ months. That is crazy."
 
 
 
-Self-Realization: "The major reason why your credit worthiness is dropping... is because of the high utilization being at \\\_\\\_\\\_\\\_% and more importantly only having $\\\_\\\_\\\_\\\_ left over every month is not enough to pay these balances down. Until this credit card debt is eliminated, your credit worthiness will continue to be negatively impacted. Does this make sense?"
+Self-Realization: "The major reason why your credit worthiness is dropping... is because of the high utilization being at \\\_\\\_\\\_\\\_% and more importantly only having $\\\_\\\_\\\_\\\_\\\_ left over every month is not enough to pay these balances down. Until this credit card debt is eliminated, your credit worthiness may continue to be negatively impacted. Does this make sense?"
 
 
 
@@ -282,11 +286,11 @@ Discuss Results (Send Evo/Monevo link):
 
 
 
-If Loan Approved: Go over details and have them click the link .
+If Loan Approved: Go over details and have them click the link.
 
 
 
-If DECLINED (Transition): "Ok as you can see the lenders that reviewed your credit and Debt to Income and it doesn’t look like you met any of the underwriting criteria to be approved for a loan... (Prospect’s Name) It really goes back to the high utilizations and the compounding interest... you are not lendable."
+If DECLINED (Transition): "Ok as you can see the lenders that reviewed your credit... it doesn’t look like you met the underwriting criteria to be approved for a loan... (Prospect’s Name) It really goes back to the high utilizations... you are not currently lendable for a consolidation loan."
 
 
 
@@ -294,15 +298,15 @@ The Solution (Pivot to Debt Settlement)
 
 
 
-HIGH ENERGY: "This turned out to be GREAT NEWS, If you look at the top you were approved from Freedom."
+HIGH ENERGY: "This turned out to be GREAT NEWS, If you look at the top you were approved for a program with Freedom."
 
 
 
-"Unlike all the lenders who did not approve you, Freedom understands your situation."
+"Unlike the lenders who did not approve you, Freedom understands your situation."
 
 
 
-"So what I like about this approval is it takes out the compounding interest... with ZERO percent and a new lower payment that goes all to principal on a reduced balance."
+"So what I like about this approval is it helps end the cycle of daily compounding interest... with a new lower payment that goes toward resolving the balance."
 
 
 
@@ -318,7 +322,7 @@ How It Works:
 
 
 
-"The first thing Freedom will do is reach out to your creditors. They're going to get new terms in place... They typically reduce your balance by 50% or more."
+"The first thing Freedom will do is reach out to your creditors. They're going to get new terms in place... They typically reduce your balance significantly."
 
 
 
@@ -354,15 +358,15 @@ Disclosures:
 
 
 
-Results: "Most clients start seeing results within the first 1–3 months. 40% of my clients see results the first month..."
+Results: "Most clients start seeing results within the first few months. 40% of clients see results the first month..."
 
 
 
-Credit: "...while there may be a short-term impact to your credit, most people start to see improvement again around the 6-month mark."
+Credit: "...resolving this debt may help rebuild your credit profile for the future. You are experiencing a debt problem, not a credit problem. We should focus on your debts first."
 
 
 
-Fees: "There’s no upfront cost — Freedom only earns a fee (25% of what they save you) once they successfully settle each account, and that’s already built into your monthly payment."
+Fees: "There’s no upfront cost — Freedom only earns a fee of \[25%] of the enrolled debt once they successfully settle each account, and that’s already built into your monthly payment."
 
 
 
@@ -370,7 +374,11 @@ Creditor Calls: "You won’t use the cards enrolled anymore, and you may get cal
 
 
 
-Compliance Audio Call: "Really quick I have a short compliance audio recording to listen to... It covers everything we talked about..."
+Legal Partner Network: "FDR may also offer access to the Legal Partner Network as part of your program with on-time payments, which provides legal support if ever needed."
+
+
+
+Compliance Audio Call: "Really quick I have a short compliance audio recording to listen to... It covers everything we talked about and provides the code we need to proceed..."
 
 
 
@@ -382,11 +390,11 @@ Compliance Audio Call: "Really quick I have a short compliance audio recording t
 
 
 
-Close \\\& Welcome Call
+Close \\ Welcome Call
 
 
 
-Send Docs \\\& Sign:
+Send Docs \\ Sign:
 
 
 
@@ -554,7 +562,7 @@ Script 768
 
 
 
-\*\*What it Does\*\* (Explain securing new terms, stopping interest, partial reduction)
+\*\*What it Does\*\* (Explain securing new terms, partial reduction)
 
 
 
@@ -590,7 +598,7 @@ Script 772
 
 
 
-\*\*Credit Impact\*\* (Address temporary impact, turn into positive of new offers in 6 months)
+\*\*Credit Impact\*\* (Address temporary impact, potential to rebuild profile over time)
 
 
 
@@ -602,7 +610,7 @@ Script 774
 
 
 
-\*\*Fees\*\* (Disclose fees factored into payment, no upfront cost)
+\*\*Fees\*\* (Disclose fee % of enrolled debt, no upfront cost)
 
 
 
@@ -623,6 +631,8 @@ Script 779
 
 
 \*\*Adherence Score Note:\*\* For Quality Assurance and compliance tracking, the Script Adherence Score is based on hitting all \*\*15 Critical Points\*\*, which include the 13 Milestones above PLUS the \*\*Compliance Audio Call\*\* (Script 683) and the \*\*Mandatory Welcome Call\*\* (Script 708).
+
+
 
 4\\. Spanish Script (Full)
 
@@ -708,11 +718,11 @@ Descubrimiento (Discovery):
 
 
 
-Preparación para la evaluación:
+Preparación para la evaluación (VERBATIM REQUERIDO):
 
 
 
-"Gracias por responder estas preguntas. El siguiente paso es hacer la verificación de crédito."
+"Para verificar su identidad, necesita autorizar a \\\[Freedom / Turnbull] para acceder a su reporte de crédito con fines de revisión de deuda. Por favor confirme su autorización diciendo 'Acepto' y presionando cualquier tecla ahora."
 
 
 
@@ -728,7 +738,7 @@ Preparación para la evaluación:
 
 
 
-Pivote (Pivot) \\\& Dolor (Pain):
+Pivote (Pivot) \\ Dolor (Pain):
 
 
 
